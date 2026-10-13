@@ -85,12 +85,14 @@ Removing or disabling the plugin just makes the three UI pieces disappear; it ne
 
 ### Reloading while developing
 
+**Just restart DSH** — the DSH desktop app has no page-reload entry point:
+
 | Changed | How to apply |
 | --- | --- |
-| `lib/client.js` (UI half) | Top-left "应用" menu → **刷新页面** (reload the page). If nothing changes, restart DSH. |
-| `lib/index.js` (host half) | **Restart** DSH. |
+| `lib/client.js` (UI half) | Restart DSH. |
+| `lib/index.js` (host half) | Restart DSH. |
 
-`Ctrl+R` / `F5` / `Ctrl+Shift+R` do nothing in the DSH desktop app — don't waste time on them. Note that DSH caches client scripts it has already served: if a deleted piece of code is still visible after a reload, restart DSH.
+`Ctrl+R` / `F5` / `Ctrl+Shift+R` do nothing in the DSH desktop app — don't waste time on them. Note that the host caches client scripts it has already served, so even if your environment offers a page reload, restarting is the reliable way to pick up changes to `lib/client.js`.
 
 ## Configuration
 
