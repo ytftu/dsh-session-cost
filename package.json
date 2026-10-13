@@ -1,0 +1,48 @@
+{
+  "name": "dsh-session-cost",
+  "version": "0.1.0",
+  "description": "DSH 插件：输入框底栏的会话消费（点击弹出每轮消费折线图）、每条回复右侧的本轮金额、窗口右上角的账号余额与今日用量（含峰谷提示、近七日曲线，可一键打开开放平台）。",
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "cost",
+    "usage",
+    "balance",
+    "session"
+  ],
+  "license": "MIT",
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./lib/client.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib",
+    "cordis.patch.yml",
+    "README.md",
+    "LICENSE"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ytftu/dsh-session-cost.git"
+  },
+  "homepage": "https://github.com/ytftu/dsh-session-cost#readme",
+  "bugs": {
+    "url": "https://github.com/ytftu/dsh-session-cost/issues"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "inject": []
+    }
+  }
+}

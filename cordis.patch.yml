@@ -1,0 +1,6 @@
+# 由 dsh-session-cost 提供的 bundle 层。
+# 宿主半边（lib/index.js）注册只读路由 /dsh-session-cost/session-cost.json，
+# 浏览器半边（lib/client.js）通过 package.json 的 dsh.client 声明被发现并加载。
+- insert:
+    - id: session-cost
+      name: 'dsh-session-cost'

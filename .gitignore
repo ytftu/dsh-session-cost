@@ -1,0 +1,15 @@
+# 依赖与临时产物
+node_modules/
+*.log
+*.tmp
+
+# 本地测试数据（记账账本、临时输出）
+.dsh-session-cost-usage.json
+test/.out/
+
+# 编辑器与系统
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+desktop.ini
