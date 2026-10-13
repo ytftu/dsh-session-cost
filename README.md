@@ -1,5 +1,7 @@
 # dsh-session-cost
 
+简体中文 | [English](README.en.md)
+
 给 [DeepSeek Harness](https://github.com/deepseek-ai)（DSH）桌面版加一条「花了多少钱」的实时反馈：**输入框底栏的会话总消费**、**每条回复的本轮消费**、**窗口右上角的账号余额与今日用量（含峰谷提示）**。
 
 会话金额按 DSH 自己的会话日志逐轮重算（覆盖插件启用之前的历史轮次），不依赖任何第三方插件。
