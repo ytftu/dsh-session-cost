@@ -152,7 +152,9 @@ The plugin parses DSH's session log directly instead of relying on in-memory cou
 
 ### WorkBuddy credits (optional footer unit)
 
-With [dsh-workbuddy-connect](https://github.com/corrinehu/dsh-workbuddy-connect) installed and WorkBuddy models wired into DSH, the footer can be switched to show the **credits this session consumed** (click the "footer unit: CNY / WorkBuddy credits" row at the bottom of the panel; the choice is stored in browser local storage):
+With [dsh-workbuddy-connect](https://github.com/corrinehu/dsh-workbuddy-connect) installed and WorkBuddy models wired into DSH, the footer can be switched to show the **credits this session consumed** (click the "this session's footer unit: CNY / WorkBuddy credits" row at the bottom of the panel):
+
+- The unit is stored **per session** and defaults to CNY: sessions that never used a WorkBuddy model are not dragged along by a choice made in another session, and sessions do not affect each other (the choice lives in browser local storage);
 
 - It reads the plugin's local read-only endpoint `GET /plugins/dsh-workbuddy-connect/status` (about once a minute) and never touches your WorkBuddy credentials;
 - WorkBuddy only exposes an **account-level** quota, with no per-session or per-turn billing, so this is an **estimate**: the deltas between consecutive samples are summed up;

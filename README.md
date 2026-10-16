@@ -152,7 +152,9 @@
 
 ### WorkBuddy 积分（底栏可选口径）
 
-装了 [dsh-workbuddy-connect](https://github.com/corrinehu/dsh-workbuddy-connect) 并把 WorkBuddy 模型接进 DSH 后，底栏可以切成显示**本会话消耗的积分**（面板底部一行「底栏金额：人民币 / WorkBuddy 积分」点击切换，选择记在浏览器本地存储里）：
+装了 [dsh-workbuddy-connect](https://github.com/corrinehu/dsh-workbuddy-connect) 并把 WorkBuddy 模型接进 DSH 后，底栏可以切成显示**本会话消耗的积分**（面板底部一行「本会话底栏金额：人民币 / WorkBuddy 积分」点击切换）：
+
+- 口径**按会话各存一份**、默认人民币：没用 WorkBuddy 模型的会话不会被别的会话的选择带偏，各个会话互不影响（选择记在浏览器本地存储里）；
 
 - 数据来自该插件的本机只读接口 `GET /plugins/dsh-workbuddy-connect/status`（约每分钟取一次），不接触 WorkBuddy 的任何密钥或凭据；
 - WorkBuddy 只提供**账号级**积分，没有按会话或按轮次的账单，所以这里是**估算**：把相邻两次采样的积分差累加起来；
