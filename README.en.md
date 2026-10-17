@@ -42,7 +42,7 @@ Last-7-days daily usage panel:
 
 ## Install
 
-> Requires DSH Desktop (developed against `DSH Desktop 2.0.17` on Windows). This is a plain Cordis plugin: one host half and one browser half.
+> Requires DSH Desktop (developed against `DSH Desktop 2.0.x` on Windows, verified on `0.2.1`; the stats row supports both the `0.2.0` and `0.2.1` DOM attributes). This is a plain Cordis plugin: one host half and one browser half.
 
 1. Clone the repo into DSH's plugin directory:
 
