@@ -10,7 +10,7 @@ Amounts are recomputed from DSH's own session logs, so they cover turns from bef
 
 | Where | Shows | Interaction |
 | --- | --- | --- |
-| Composer footer (after the token counter) | `本会话 ¥ 6.42` (switchable to `本会话 12 积分`) | Click for a **per-turn cost chart**; the panel footer switches the footer unit |
+| Composer footer (after the token counter) | `本会话 ¥ 6.42` | Click for a **per-turn cost chart** |
 | Each reply's action bar (next to DSH's own `用量 N tok` pill) | `¥ 0.28` | Same pill styling as DSH's counter; hover for details |
 | Top-right corner (right of the menu bar) | `谷时 余额 ¥ 42.00 · 今日 ¥ 3.21` | Click for a **last-7-days daily usage chart** plus an "Open DeepSeek Platform" button (opens in DSH's sidebar browser, keeping you signed in) |
 
@@ -150,18 +150,6 @@ The plugin parses DSH's session log directly instead of relying on in-memory cou
 - **Today's usage is accumulated from balance drops**: the balance is sampled every 60 seconds, and only decreases count towards today (top-ups never produce negative usage); at midnight the day's usage is archived into history and the baseline is reset;
 - In other words it is "everything charged today across all channels", which is a **different measure** from the footer's `token × price` — do not add them together.
 
-### WorkBuddy credits (optional footer unit)
-
-With [dsh-workbuddy-connect](https://github.com/corrinehu/dsh-workbuddy-connect) installed and WorkBuddy models wired into DSH, the footer can be switched to show the **credits this session consumed** (click the "this session's footer unit: CNY / WorkBuddy credits" row at the bottom of the panel):
-
-- The unit is stored **per session** and defaults to CNY: sessions that never used a WorkBuddy model are not dragged along by a choice made in another session, and sessions do not affect each other (the choice lives in browser local storage);
-
-- It reads the plugin's local read-only endpoint `GET /plugins/dsh-workbuddy-connect/status` (about once a minute) and never touches your WorkBuddy credentials;
-- WorkBuddy only exposes an **account-level** quota, with no per-session or per-turn billing, so this is an **estimate**: the deltas between consecutive samples are summed up;
-- Reconciliation is done per credit package, so **newly granted credits** are added back and **expired credits** are subtracted instead of being counted as consumption; a quota cycle reset is not counted either;
-- Usage of the same account elsewhere (the WorkBuddy desktop app, other DSH sessions) is included, so this figure is an **upper bound**;
-- WorkBuddy runs on a subscription quota and the plugin reports a price of zero to DSH, so any `¥` derived from official per-token prices is meaningless there — the credit unit is the more honest one.
-
 ## HTTP endpoints
 
 Two read-only routes, both restricted to local hosts (`localhost` / `127.x` / `[::1]`; anything else gets 403) and requiring no authentication:
@@ -201,7 +189,6 @@ node test/test_tooltip.mjs               # hover cards
 node test/test_turn_cost.mjs             # per-reply amount injection
 node test/test_chart.mjs                 # chart coordinates and labels
 node test/test_panel_place.mjs           # panel placement
-node test/test_workbuddy.mjs             # WorkBuddy credits: snapshots, reconciliation, copy
 ```
 
 The test scripts extract the **real functions** from `lib/*.js` and run them with stubbed dependencies (`new Function`), so assertions track the implementation immediately.
@@ -212,7 +199,6 @@ The test scripts extract the **real functions** from `lib/*.js` and run them wit
 - Log parsing assumes the `session.v4.jsonl.zstd` multi-frame format stays the same (a DSH upgrade may break it); after 3 consecutive failures a frame is skipped;
 - The exact meaning of the top-right balance depends on how you signed in to DSH (API key vs. account);
 - Only tested on DSH Desktop for Windows; the browser half uses DSH's official client-plugin channel, so other platforms should behave the same;
-- WorkBuddy credits are an **account-level estimate** (usage elsewhere on the same account is included), not a per-session bill; without `dsh-workbuddy-connect` installed or signed in, the credit unit shows `本会话 -- 积分`.
 
 ## License
 
